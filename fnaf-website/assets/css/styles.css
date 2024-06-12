@@ -154,6 +154,7 @@ video {
 main {
     margin-right: 420px;
     filter: brightness(70%);
+    color: var(--text-color-2);
 }
 
 .animatronic-profile {

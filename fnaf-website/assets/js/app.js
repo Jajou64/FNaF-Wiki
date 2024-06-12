@@ -3,7 +3,7 @@ const animatronicImg = document.querySelector(".animatronic");
 const animatronicJumpscareImg = document.querySelector(".jumpscare");
 const animatronicProfile = document.querySelector(".animatronic-profile");
 const jumpscareProfile = document.querySelector(".jumpscare-profile");
-const bodyBackground = document.querySelector('body')
+const bodyBackground = document.querySelector("body");
 
 // Bouton des caméras
 const freddyBtn = document.getElementById("Freddy");
@@ -23,6 +23,9 @@ const cameraChange = document.createElement("video");
 const goldenFreddySound = document.createElement("audio");
 const freddySound = document.createElement("audio");
 
+//Spamm It's Me
+const spamItsMe = document.createElement("p");
+
 //Fetch du data.json
 fetch("./assets/data/data.json")
   .then(function (res) {
@@ -37,8 +40,19 @@ fetch("./assets/data/data.json")
     fnaf.textContent = data[0].fnaf;
     nights.textContent = data[0].nights;
 
+    // Enleve les ItsMe quand on clique sur d'autres caméras
+    function removeItsMe() {
+      const itsMeElements = document.querySelectorAll('.its-me')
+      itsMeElements.forEach(function(element){
+        element.remove()
+      })
+    }
+
+    removeItsMe()
+
     //Bouton de Freddy
     freddyBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
 
       // Jouer le son de la caméra qui change
@@ -60,16 +74,19 @@ fetch("./assets/data/data.json")
 
       // Ajout - Remove des class
       freddyBtn.classList.add("active");
-      bodyBackground.classList.add('background')
 
+      bodyBackground.classList.add('background')
       bonnieBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
       goldenFreddyBtn.classList.remove("active");
+
+      
     });
 
     //Bouton de Bonnie
     bonnieBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
 
       // Jouer le son de la caméra qui change
@@ -89,6 +106,7 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       bonnieBtn.classList.add("active");
 
+      bodyBackground.classList.remove('background')
       freddyBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -97,13 +115,12 @@ fetch("./assets/data/data.json")
 
     //Bouton de Chica
     chicaBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
 
       // Jouer le son de la caméra qui change
       cameraChange.src = "./assets/video/camera-change.mp4";
       cameraChange.play();
-
-      
 
       // Arrêter le son de Golden Freddy et Freddy
       freddySound.pause();
@@ -118,6 +135,7 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       chicaBtn.classList.add("active");
 
+      bodyBackground.classList.remove('background')
       freddyBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -126,6 +144,7 @@ fetch("./assets/data/data.json")
 
     //Bouton de Foxy
     foxyBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
 
       // Jouer le son de la caméra qui change
@@ -145,6 +164,7 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       foxyBtn.classList.add("active");
 
+      bodyBackground.classList.remove('background')
       chicaBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       freddyBtn.classList.remove("active");
@@ -153,6 +173,7 @@ fetch("./assets/data/data.json")
 
     //Bouton de Golden Freddy
     goldenFreddyBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
 
       // Jouer le son de la caméra qui change
@@ -172,9 +193,26 @@ fetch("./assets/data/data.json")
       fnaf.textContent = data[4].fnaf;
       nights.textContent = data[4].nights;
 
+      //Spam IT'S ME
+      for(let i = 0; i < 50; i++) {
+        if (animatronicProfile) {
+          const spamItsMe = document.createElement("p");
+  
+          let randomItsMe = 0;
+          randomItsMe = Math.random() * 100;
+  
+          spamItsMe.textContent = "It's Me".toUpperCase();
+          spamItsMe.classList.add('its-me')
+  
+          animatronicProfile.appendChild(spamItsMe);
+        }
+      }
+
+
       // Ajout - Remove des class
       goldenFreddyBtn.classList.add("active");
 
+      bodyBackground.classList.remove('background')
       chicaBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       freddyBtn.classList.remove("active");
@@ -189,6 +227,8 @@ fetch("./assets/data/data.json")
     jumpscareAnimatronicName.classList.add("jumpscare-animatronic-title");
 
     // Ajouter au document
+    animatronicProfile.appendChild(spamItsMe);
+
     animatronicProfile.appendChild(animatronicImg);
     animatronicProfile.appendChild(animatronicName);
     animatronicProfile.appendChild(nights);
