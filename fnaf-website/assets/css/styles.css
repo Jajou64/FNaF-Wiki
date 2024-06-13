@@ -11,7 +11,7 @@
     --text-color: #000000;
     --text-color-2: #fff;
     --highlight-color: #ff0000;
-    --nav-background-color: #f4a460; 
+    --nav-background-color: #7e3b00; 
 }
 
 * {
@@ -20,6 +20,7 @@
 }
 
 body {
+    color: var(--text-color-2);
     background-color: rgb(44, 44, 44);
     height: 100%;
     box-shadow: inset rgba(0, 0, 0, 1) 0px 0px 40px 0px, inset rgba(0, 0, 0, 1) 0px 0px 40px 0px, inset rgba(0, 0, 0, 1) 0px 0px 36px -24px;
@@ -169,10 +170,20 @@ main {
 }
 
 .background {
-    background-image: url('../image/fnaf-logo.gif');
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
+    background-image: url(../image/freddy-cam.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.its-me {
+    position: absolute;
+}
+
+.description {
+    color: var(--text-color-2);
+}
+
+.its-me {
+    cursor: none;
+    opacity: 0.5;
 }
