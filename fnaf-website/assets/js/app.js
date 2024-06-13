@@ -23,6 +23,9 @@ const cameraChange = document.createElement("video");
 const goldenFreddySound = document.createElement("audio");
 const freddySound = document.createElement("audio");
 
+//Spamm It's Me
+const spamItsMe = document.createElement("p");
+
 //Fetch du data.json
 fetch("./assets/data/data.json")
   .then(function (res) {
@@ -44,8 +47,19 @@ fetch("./assets/data/data.json")
     fnaf.textContent = data[0].fnaf;
     nights.textContent = data[0].nights;
 
+    // Enleve les ItsMe quand on clique sur d'autres caméras
+    function removeItsMe() {
+      const itsMeElements = document.querySelectorAll('.its-me')
+      itsMeElements.forEach(function(element){
+        element.remove()
+      })
+    }
+
+    removeItsMe()
+
     //Bouton de Freddy
     freddyBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
       removeItsMe()
 
@@ -70,14 +84,18 @@ fetch("./assets/data/data.json")
       freddyBtn.classList.add("active");
       bodyBackground.classList.add("background");
 
+      bodyBackground.classList.add('background')
       bonnieBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
       goldenFreddyBtn.classList.remove("active");
+
+      
     });
 
     //Bouton de Bonnie
     bonnieBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
       removeItsMe()
 
@@ -108,6 +126,7 @@ fetch("./assets/data/data.json")
 
     //Bouton de Chica
     chicaBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
       removeItsMe()
 
@@ -137,6 +156,7 @@ fetch("./assets/data/data.json")
 
     //Bouton de Foxy
     foxyBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
       removeItsMe()
 
@@ -166,6 +186,7 @@ fetch("./assets/data/data.json")
 
     //Bouton de Golden Freddy
     goldenFreddyBtn.addEventListener("click", function (e) {
+      removeItsMe()
       e.preventDefault();
 
       // Jouer le son de la caméra qui change
@@ -201,6 +222,22 @@ fetch("./assets/data/data.json")
       animatronicImg.src = data[4].animatronic_image;
       fnaf.textContent = data[4].fnaf;
       nights.textContent = data[4].nights;
+
+      //Spam IT'S ME
+      for(let i = 0; i < 50; i++) {
+        if (animatronicProfile) {
+          const spamItsMe = document.createElement("p");
+  
+          let randomItsMe = 0;
+          randomItsMe = Math.random() * 100;
+  
+          spamItsMe.textContent = "It's Me".toUpperCase();
+          spamItsMe.classList.add('its-me')
+  
+          animatronicProfile.appendChild(spamItsMe);
+        }
+      }
+
 
       // Ajout - Remove des class
       goldenFreddyBtn.classList.add("active");
