@@ -69,6 +69,13 @@ fetch("./assets/data/data.json")
       // Arrêter le son de Freddy
       freddySound.pause();
 
+      function removeItsMe() {
+        const itsMeElements = document.querySelectorAll(".its-me");
+        itsMeElements.forEach(function (element) {
+          element.remove();
+        });
+      }
+
       // SPAM ItsMe
       function createIM() {
         removeItsMe();
