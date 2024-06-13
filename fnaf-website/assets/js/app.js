@@ -23,6 +23,7 @@ const nights = document.createElement("p");
 const cameraChange = document.createElement("video");
 const goldenFreddySound = document.createElement("audio");
 const freddySound = document.createElement("audio");
+const kitchenNoice = document.createElement('audio')
 
 //Spamm It's Me
 const spamItsMe = document.createElement("p");
@@ -68,6 +69,7 @@ fetch("./assets/data/data.json")
 
       // Arrêter le son de Freddy
       freddySound.pause();
+      kitchenNoice.pause()
 
       function removeItsMe() {
         const itsMeElements = document.querySelectorAll(".its-me");
@@ -94,7 +96,7 @@ fetch("./assets/data/data.json")
             spamItsMe.style.top = Math.random() * 90 + "%";
             spamItsMe.style.left = Math.random() * 90 + "%";
             spamItsMe.style.fontSize = Math.random() * 3 + "em";
-            spamItsMe.style.opacity = Math.random() * 0.5
+            spamItsMe.style.opacity = Math.random() * 0.5;
 
             if (Math.floor(Math.random() * 2) === 0) {
               spamItsMe.style.display = "none";
@@ -107,7 +109,9 @@ fetch("./assets/data/data.json")
           }
         }
       }
+
       createIM();
+      // Un interval tout les 100 miliseconds 50 "ItsMe" apparaissent
       itsMeUpdate = setInterval(createIM, 100);
 
       // Informations
@@ -119,7 +123,10 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       goldenFreddyBtn.classList.add("active");
 
+      bodyBackground.classList.remove("freddy-background");
+      bodyBackground.classList.remove("bonnie-background");
       bodyBackground.classList.remove("background");
+
       chicaBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       freddyBtn.classList.remove("active");
@@ -140,8 +147,9 @@ fetch("./assets/data/data.json")
       freddySound.src = "./assets/sounds/freddy-sound.mp3";
       freddySound.play();
 
-      // Arrêter le son de Golden Freddy
+      // Arrêter le son de Golden Freddy et Son De La Cuisine
       goldenFreddySound.pause();
+      kitchenNoice.pause()
 
       // Informations
       description.textContent = data[0].description;
@@ -151,9 +159,11 @@ fetch("./assets/data/data.json")
 
       // Ajout - Remove des class
       freddyBtn.classList.add("active");
-      bodyBackground.classList.add("background");
 
-      bodyBackground.classList.add("background");
+      bodyBackground.classList.add("freddy-background");
+      bodyBackground.classList.remove("bonnie-background");
+      bodyBackground.classList.remove("background");
+
       bonnieBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -170,9 +180,10 @@ fetch("./assets/data/data.json")
       cameraChange.src = "./assets/video/camera-change.mp4";
       cameraChange.play();
 
-      // Arrêter le son de Golden Freddy et Freddy
+      // Arrêter le son de Golden Freddy, Freddy et Son De La Cuisine
       freddySound.pause();
       goldenFreddySound.pause();
+      kitchenNoice.pause()
 
       // Informations
       description.textContent = data[1].description;
@@ -184,7 +195,9 @@ fetch("./assets/data/data.json")
 
       bonnieBtn.classList.add("active");
 
+      bodyBackground.classList.add("bonnie-background");
       bodyBackground.classList.remove("background");
+
       freddyBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -205,6 +218,10 @@ fetch("./assets/data/data.json")
       freddySound.pause();
       goldenFreddySound.pause();
 
+      //Son de la cuisine
+      kitchenNoice.src = "./assets/sounds/Chica-kitchen-noice.mp3"
+      kitchenNoice.play()
+
       // Informations
       description.textContent = data[2].description;
       animatronicImg.src = data[2].animatronic_image;
@@ -214,7 +231,10 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       chicaBtn.classList.add("active");
 
+      bodyBackground.classList.remove("bonnie-background");
+      bodyBackground.classList.remove("freddy-background");
       bodyBackground.classList.remove("background");
+
       freddyBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -231,9 +251,10 @@ fetch("./assets/data/data.json")
       cameraChange.src = "./assets/video/camera-change.mp4";
       cameraChange.play();
 
-      // Arrêter le son de Golden Freddy et Freddy
+      // Arrêter le son de Golden Freddy, Golden Freddy et son de la cuisine
       freddySound.pause();
       goldenFreddySound.pause();
+      kitchenNoice.pause()
 
       // Informations
       description.textContent = data[3].description;
@@ -244,7 +265,10 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       foxyBtn.classList.add("active");
 
+      bodyBackground.classList.remove("bonnie-background");
+      bodyBackground.classList.remove("freddy-background");
       bodyBackground.classList.remove("background");
+
       chicaBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       freddyBtn.classList.remove("active");

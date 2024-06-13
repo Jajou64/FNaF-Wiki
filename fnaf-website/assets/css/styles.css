@@ -166,11 +166,26 @@ main {
 }
 
 .animatronic {
-    width: 400px;
+    width: 15%;
+
+    position: fixed;
+    right: 0;
 }
 
 .background {
     background-image: url(../image/freddy-cam.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.freddy-background {
+    background-image: url(../image/freddy-cam.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bonnie-background {
+    background-image: url(../image/bonnie-cam.gif);
     background-repeat: no-repeat;
     background-size: cover;
 }
