@@ -94,6 +94,7 @@ fetch("./assets/data/data.json")
             spamItsMe.style.top = Math.random() * 90 + "%";
             spamItsMe.style.left = Math.random() * 90 + "%";
             spamItsMe.style.fontSize = Math.random() * 3 + "em";
+            spamItsMe.style.opacity = Math.random() * 0.5
 
             if (Math.floor(Math.random() * 2) === 0) {
               spamItsMe.style.display = "none";
@@ -106,7 +107,6 @@ fetch("./assets/data/data.json")
           }
         }
       }
-
       createIM();
       itsMeUpdate = setInterval(createIM, 100);
 
