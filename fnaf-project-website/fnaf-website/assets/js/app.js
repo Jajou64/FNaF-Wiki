@@ -3,7 +3,7 @@ const animatronicImg = document.querySelector(".animatronic");
 const animatronicJumpscareImg = document.querySelector(".jumpscare");
 const animatronicProfile = document.querySelector(".animatronic-profile");
 const jumpscareProfile = document.querySelector(".jumpscare-profile");
-const bodyBackground = document.querySelector('body')
+const bodyBackground = document.querySelector("body");
 
 // Bouton des caméras
 const freddyBtn = document.getElementById("Freddy");
@@ -31,6 +31,13 @@ fetch("./assets/data/data.json")
   .then(function (data) {
     console.log(data);
 
+    function removeItsMe() {
+      const itsMeElements = document.querySelectorAll(".its-me");
+      itsMeElements.forEach(function (element) {
+        element.remove();
+      });
+    }
+
     // Affiche Freddy de base
     description.textContent = data[0].description;
     animatronicImg.src = data[0].animatronic_image;
@@ -40,6 +47,7 @@ fetch("./assets/data/data.json")
     //Bouton de Freddy
     freddyBtn.addEventListener("click", function (e) {
       e.preventDefault();
+      removeItsMe()
 
       // Jouer le son de la caméra qui change
       cameraChange.src = "./assets/video/camera-change.mp4";
@@ -60,7 +68,7 @@ fetch("./assets/data/data.json")
 
       // Ajout - Remove des class
       freddyBtn.classList.add("active");
-      bodyBackground.classList.add('background')
+      bodyBackground.classList.add("background");
 
       bonnieBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
@@ -71,6 +79,7 @@ fetch("./assets/data/data.json")
     //Bouton de Bonnie
     bonnieBtn.addEventListener("click", function (e) {
       e.preventDefault();
+      removeItsMe()
 
       // Jouer le son de la caméra qui change
       cameraChange.src = "./assets/video/camera-change.mp4";
@@ -87,8 +96,10 @@ fetch("./assets/data/data.json")
       nights.textContent = data[1].nights;
 
       // Ajout - Remove des class
+
       bonnieBtn.classList.add("active");
 
+      bodyBackground.classList.remove("background");
       freddyBtn.classList.remove("active");
       chicaBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -98,12 +109,11 @@ fetch("./assets/data/data.json")
     //Bouton de Chica
     chicaBtn.addEventListener("click", function (e) {
       e.preventDefault();
+      removeItsMe()
 
       // Jouer le son de la caméra qui change
       cameraChange.src = "./assets/video/camera-change.mp4";
       cameraChange.play();
-
-      
 
       // Arrêter le son de Golden Freddy et Freddy
       freddySound.pause();
@@ -118,6 +128,7 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       chicaBtn.classList.add("active");
 
+      bodyBackground.classList.remove("background");
       freddyBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       foxyBtn.classList.remove("active");
@@ -127,6 +138,7 @@ fetch("./assets/data/data.json")
     //Bouton de Foxy
     foxyBtn.addEventListener("click", function (e) {
       e.preventDefault();
+      removeItsMe()
 
       // Jouer le son de la caméra qui change
       cameraChange.src = "./assets/video/camera-change.mp4";
@@ -145,6 +157,7 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       foxyBtn.classList.add("active");
 
+      bodyBackground.classList.remove("background");
       chicaBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       freddyBtn.classList.remove("active");
@@ -166,6 +179,23 @@ fetch("./assets/data/data.json")
       // Arrêter le son de Freddy
       freddySound.pause();
 
+      // SPAM ItsMe
+      for (let i = 0; i < 50; i++) {
+        const animatronicProfile = document.querySelector( ".animatronic-profile");
+
+        if (animatronicProfile) {
+          const spamItsMe = document.createElement("p");
+
+          let randomItsMe = 0;
+          randomItsMe = Math.random() * 100;
+
+          spamItsMe.textContent = "It's Me".toUpperCase();
+
+          spamItsMe.classList.add('its-me')
+          animatronicProfile.appendChild(spamItsMe);
+        }
+      }
+
       // Informations
       description.textContent = data[4].description;
       animatronicImg.src = data[4].animatronic_image;
@@ -175,6 +205,7 @@ fetch("./assets/data/data.json")
       // Ajout - Remove des class
       goldenFreddyBtn.classList.add("active");
 
+      bodyBackground.classList.remove("background");
       chicaBtn.classList.remove("active");
       bonnieBtn.classList.remove("active");
       freddyBtn.classList.remove("active");
@@ -189,6 +220,7 @@ fetch("./assets/data/data.json")
     jumpscareAnimatronicName.classList.add("jumpscare-animatronic-title");
 
     // Ajouter au document
+
     animatronicProfile.appendChild(animatronicImg);
     animatronicProfile.appendChild(animatronicName);
     animatronicProfile.appendChild(nights);
